@@ -1,0 +1,84 @@
+//array should be sorted and need to divide it into two parts 
+#include<iostream>
+using namespace std;
+
+class binary{
+	public:
+		int size,*ptr,start,end,mid,value;
+			
+		void get()
+		{
+		cout<<"Enter the size of array ";
+		cin>>size;
+		ptr=new int(size);
+		for(int i=0;i<size;i++)
+		{
+				cin>>ptr[i];                                       
+		}
+		}
+	void display()
+		{
+			for(int i=0;i<size;i++)
+		{
+		cout<<endl<<ptr[i]<<" ";
+		}
+		}
+		void insertion()
+		{
+			for(int i=0;i<size;i++)
+			{
+				int min=i;
+				for(int j=i+1;j<size;j++)
+				{
+					if(ptr[min]>ptr[j])
+					{
+						min=j;
+					}
+				}
+				int temp=ptr[min];
+				ptr[min]=ptr[i];
+				ptr[i]=temp;
+			}
+			cout<<endl<<"Sorted array is ";
+				for(int i=0;i<size;i++)
+		{
+		cout<<endl<<ptr[i]<<" ";
+		}
+		}
+		void binar()
+		{
+			cout<<endl<<"Enter the value you want to search ";
+			cin>>value;
+			start=0;
+			end=size-1;
+			mid=(start+end)/2;
+			while(start<=end)
+			
+			{
+				if(value==ptr[mid])
+				{
+					cout<<value<<" found at the index "<<mid<<endl;
+					break;
+			}
+			else if(value<ptr[mid])
+			{
+				mid=mid-1;	
+			
+			}
+			else {
+				mid=mid+1;
+				
+			}
+			}
+		}
+};
+int main()
+{
+	binary b;
+	b.get();
+	cout<<endl<<"Value before sorting ";
+	b.display();
+	cout<<endl<<"Value after sorting ";
+	b.insertion();
+	b.binar();
+}
