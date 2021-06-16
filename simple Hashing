@@ -1,0 +1,60 @@
+#include<iostream>
+using namespace std;
+
+class mod{
+	public:
+		int *ptr,*copy,size,num;	
+		void get()
+		{
+			cout<<"Enter the size of array ";
+			cin>>size;
+			ptr=new int[size];
+			copy=new int [size];
+			cout<<"Enter elements in array ";
+			for(int i=0;i<size;i++)
+			{
+				cin>>ptr[i];
+			}
+			for(int i=0;i<size;i++)
+			{
+				copy[i]=-1;
+			}}
+		void display()
+			{
+				cout<<"without Modulo div ";
+				for(int i=0;i<size;i++)
+			{
+				cout<<endl<<i<<"--------->"<<ptr[i];
+			}
+				cout<<endl<<endl<<"After Modulo div ";
+				for(int i=0;i<size;i++)
+			{
+				cout<<endl<<i<<"--------->"<<copy[i];
+			}
+			
+			}
+		void modulo()
+		{
+			for(int i=0;i<size;i++)
+			{
+				num=ptr[i]%size;
+				while(copy[num]!=-1)
+				{
+					num++;
+					if(num>size)
+					{
+						num=num%size;
+					}}
+					copy[num]=ptr[i];
+				
+			}
+		}
+		
+};
+int main()
+{
+	mod m;
+	m.get();
+	m.modulo();
+	m.display();
+}
