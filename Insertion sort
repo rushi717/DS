@@ -1,0 +1,61 @@
+#include<iostream>
+using namespace std;
+class Selection{
+	public:
+			int size,*ptr;
+	void get()
+	{
+		
+	cout<<"Enter the no.s of elements you want to insert ";
+	cin>>size;
+	ptr=new int[size];
+	for(int i=0;i<size;i++)
+	{
+		cout<<"Enter the element ";
+		cin>>ptr[i];
+	}	
+	}
+	
+	void select()
+	{
+		for(int i=0;i<size;i++)
+		{
+			int min=i;
+			for(int j=i+1;j<size;j++)
+			{
+				if(ptr[j]<ptr[min])
+				{
+					min=j;
+				}
+				
+		 }
+		
+				
+			int temp;
+				temp=ptr[i];
+				ptr[i]=ptr[min];
+				ptr[min]=temp;}
+		
+	}
+		void display()
+	{
+	
+		for(int i=0;i<size;i++)
+	{
+		
+		cout<<ptr[i]<<" ";
+	}
+	
+	}
+};
+	int main()
+{
+
+	Selection b;
+	b.get();
+	cout<<endl<<"Input array ";
+	b.display();
+	b.select();
+	cout<<endl<<"Sorted array ";
+	b.display();
+}
