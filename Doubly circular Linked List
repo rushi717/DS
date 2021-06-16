@@ -1,0 +1,325 @@
+#include<iostream>
+using namespace std;
+
+struct Node{
+	int data;
+	Node * next;
+	Node * prev;
+}*Head=NULL,*q,*p,*r;
+
+class doubly_circular{
+	public:
+		int data1,choice,data2,countt=0;
+		void begin_i()
+		{
+			p=new Node;
+			cout<<"Enter data ";
+			cin>>data1;
+			p->data=data1;
+			if(Head==NULL)
+			{
+				p->prev=p;
+				p->next=p;
+				Head=p;
+			}
+			else{
+				q=Head;
+				do{
+					q=q->next;
+				}
+				while(q->next!=Head);
+				q->next=p;
+				p->prev=q;
+				p->next=Head;
+				Head=p;
+			}
+		}
+		void end_i()
+		{
+			p=new Node;
+			cout<<"Enter data ";
+			cin>>data1;
+			p->data=data1;
+			if(Head==NULL)
+			{
+				p->prev=p;
+				p->next=p;
+				Head=p;
+			}
+			else{
+				q=Head;
+				do{
+					q=q->next;
+				}
+				while(q->next!=Head);
+				q->next=p;
+				p->prev=q;
+				p->next=Head;
+				Head->prev=p;
+			}	
+		}
+		void end_d()
+		{
+			if(Head==NULL)
+			{
+				cout<<"LL is empty "<<endl;
+			}
+			else{
+				q=Head;
+				do{
+					r=q;
+					q=q->next;
+				}
+				while(q->next!=Head);
+				r->next=Head;
+				Head->prev=r;
+				cout<<q->data<<" Got deleted "<<endl;
+				delete(q);
+			}
+		}
+		void begin_d()
+		{
+				if(Head==NULL)
+			{
+				cout<<"LL is empty "<<endl;
+			}
+			else{
+				q=Head;
+				r=Head;
+				do{
+					q=q->next;
+				}
+				while(q->next!=Head);
+				Head=Head->next;
+					q->next=Head;
+					Head->prev=q;
+					cout<<r->data<<" Got deleted "<<endl;
+					delete(r);
+				}
+		}
+		void insert_after()
+		{
+			if(Head==NULL)
+			{
+				cout<<"LL is empty "<<endl;
+			}
+			else{
+				p=new Node;
+				cout<<"Enter the data ";
+				cin>>data1;
+				q=Head;
+				while(q->next!=Head)
+				{
+					if(q->data==data1)
+					{
+						r=q->next;
+						cout<<"Enter the data ";
+						cin>>data2;
+						p->data=data2;
+						q->next=p;
+						p->prev=q;
+						p->next=r;
+						r->prev=p;
+						break;
+					}
+					q=q->next;
+				}
+				}
+		}
+		void delete_selected()
+		{
+			if(Head==NULL)
+			{
+				cout<<"LL is empty "<<endl;
+			}
+			else{
+				cout<<"Enter the data you want to delete ";
+				cin>>data1;
+				q=Head;
+				do{
+					r=q;
+					q=q->next;
+				}
+				while(q->data!=data1);
+				r->next=q->next;
+				q->prev=r;
+				cout<<q->data<<" Got deleted "<<endl;
+				delete(q);
+		}}
+		void Insert_before()
+		{
+			if(Head==NULL)
+			{
+				cout<<"LL is empty "<<endl;
+			}
+			else{
+				p=new Node;
+				cout<<"Enter the data ";
+				cin>>data1;
+				q=Head;
+				while(q->next!=Head)
+				{
+					if(q->data==data1)
+					{
+						cout<<"Enter the data ";
+						cin>>data2;
+						p->data=data2;
+						r->next=p;
+						p->prev=r;
+						p->next=q;
+						q->prev=p;
+						break;
+					}
+					r=q;
+					q=q->next;
+		}}}
+		void sort()
+		{
+			if(Head==NULL)
+			{
+				cout<<"LL is empty "<<endl;
+			}
+			else{
+				q=Head;
+				r=q->next;
+				do{
+					while(r!=Head){
+					
+						if(q->data > r->data)
+						{
+							cout<<"Hello"<<endl;
+							data1=q->data;
+							q->data=r->data;
+							r->data=data1;
+						}
+						r=r->next;
+					}
+				
+					q=q->next;
+				}
+				while(q->next!=Head);
+			
+			}
+		}
+		void Reverse()
+		{
+				if(Head==NULL)
+				{
+					cout<<"LL is empty "<<endl;
+				}
+				else{
+					q=Head;
+					r=Head;
+					do{
+						q=q->next;
+					}
+					while(q->next!=Head);
+					Head=q;
+					
+					Head->next=r;
+					r->prev=Head;
+				
+					q=Head;
+						do{
+					cout<<"|"<<q->data<<"|"<<"\t";
+					q=q->prev;
+				}
+				while(q->prev!=Head);
+				
+					
+				}
+		}
+		void count()
+		{
+			if(Head==NULL)
+			{
+				cout<<"LL is empty "<<endl;
+			}
+			else{
+				q=Head;
+				do{
+					countt+=1;
+					q=q->next;
+				}
+				while(q!=Head);
+				cout<<"Count is "<<countt<<endl;
+			}
+		}
+		void Search()
+		{
+			
+		}
+		void display()
+		{
+			if(Head==NULL)
+			{
+				cout<<"LL is empty "<<endl;
+			}
+			else{
+				q=Head;
+				do{
+					cout<<"|"<<q->data<<"|"<<"\t";
+					q=q->next;
+				}
+				while(q!=Head);
+				
+			}
+		}
+		void menu()
+		{
+			do{
+				
+				cout<<endl<<"1.Begin Insert "<<"\n"<<"2.End Insert "<<"\n"<<"3.Begin Delete "<<"\n"<<"4.End Delete "<<"\n"<<"5.Insert after"<<"\n"<<"6.Delete particular element"<<"\n"<<"7.Insert before particular"<<"\n"<<"8.Sort LL"<<"\n"<<"9.Reverse"<<"\n"<<"10.Search"<<"\n"<<"11.Count"<<"\n"<<"12.Display"<<"\n"<<"13.Exit"<<"\n"<<endl;
+				cout<<"Enter your choice ";
+				cin>>choice;
+				switch(choice)
+				{
+					case 1:
+						begin_i();
+						break;	
+					case 2:
+						end_i();
+						break;
+					case 3:
+						begin_d();
+						break;
+					case 4: 
+						end_d();
+						break;
+					case 5:
+						insert_after();
+						break;
+					case 6:
+						delete_selected();
+						break;
+					case 7:
+						Insert_before();
+						break;
+					case 8:
+						sort();
+						break;
+					case 9:
+						Reverse();
+						break;
+					case 10:
+						Search();
+						break;
+					case 11:
+						count();
+						break;
+					case 12:
+						display();
+						break;
+					case 13:
+						break;
+						
+				}
+			}
+			while(choice!=13);
+		}
+};
+int main()
+{
+	doubly_circular d;
+	d.menu();
+}
