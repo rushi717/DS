@@ -1,0 +1,52 @@
+//this search is a simple search which just looks for its key matching to array value
+
+#include<iostream>
+using namespace std;
+
+class Seq
+{
+	public:
+		int size,*ptr,value;
+	void get()
+		{
+		cout<<"Enter the size of array ";
+		cin>>size;
+		ptr=new int(size);
+		for(int i=0;i<size;i++)
+		{
+				cin>>ptr[i];                                       
+		}
+		}
+	void display()
+		{
+			for(int i=0;i<size;i++)
+		{
+		cout<<endl<<ptr[i]<<" ";
+		}}
+	void sequential()
+	{
+		
+		cout<<endl<<"Enter the value you eant to search ";
+		cin>>value;
+		for(int i=0;i<size;i++)
+		{
+			if(ptr[i]==value)
+			{
+				cout<<value<<" found at index: "<<i+1<<endl;	
+				break;
+			}
+			else{
+				cout<<"Value is not present "<<endl;
+			}
+		}
+	}
+		
+};
+int main()
+{
+	Seq s;
+	s.get();
+	cout<<"Values are ";
+	s.display();
+	s.sequential();
+}
