@@ -1,0 +1,64 @@
+#include<iostream>
+using namespace std;
+class bubble{
+	public:
+			int no,*ptr;
+	void get()
+	{
+		
+	cout<<"Enter the no.s of elements you want to insert ";
+	cin>>no;
+	ptr=new int[no];
+	for(int i=0;i<no;i++)
+	{
+		cout<<"Enter the element ";
+		cin>>ptr[i];
+	}
+	cout<<"You have Entered ";
+	for(int i=0;i<no;i++)
+	{
+		
+		cout<<ptr[i]<<" ";
+	}	
+		
+	}
+	void bubblee()
+	{
+		for(int i=0;i<no;i++)
+		{
+			for(int j=i+1;j<no;j++)
+			
+			{
+				if(ptr[i]>ptr[j])
+				{
+					int temp=ptr[i];
+					ptr[i]=ptr[j];
+					ptr[j]=temp;
+				}
+				
+			}
+		}
+	}
+	void display()
+	{
+		cout<<endl<<"Sorted array ";
+		for(int i=0;i<no;i++)
+	{
+		
+		cout<<ptr[i]<<" ";
+	}
+	
+	}
+	
+};
+int main()
+{
+
+	bubble b;
+	b.get();
+	b.bubblee();
+	b.display();
+}
+
+//Time complexity best case:- O(n*n)
+//Time Complexity Worst case:- O(n) as array is already sorted
