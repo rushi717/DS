@@ -1,0 +1,65 @@
+#include<iostream>
+using namespace std;
+class Quick{
+	public:
+	int size,*ptr;	
+	int quicks(int *ptr,int s,int e)
+	{
+		int pivot=ptr[e];//WE NEED TO ASSIGN PIVOT AT THE START WHICH CAN'T CHANGE FURTHER
+		int index=s;//STARTING VALUE WHICH IS '0'
+		for(int i=s;i<e;i++)
+		{
+			if(ptr[i]<pivot)
+			{
+				int temp=ptr[i];
+				ptr[i]=ptr[index];
+				ptr[index]=temp;
+				index++;
+			}
+		}
+		int temp=ptr[e];
+		ptr[e]=ptr[index];
+		ptr[index]=temp;		
+		return index;
+	}	
+	Quicksort(int *ptr,int s,int e)	
+	{
+		if(s<e)
+		{
+		int p=quicks(ptr,s,e);
+			Quicksort(ptr,s,(p-1));
+			Quicksort(ptr,(p+1),e);
+		}		
+	}
+	void display()
+	{
+		cout<<endl;
+			for(int i=0;i<size;i++)
+		{
+			cout<<ptr[i]<<" ";
+		}
+	}
+	void get()
+	{
+		cout<<"Select the size of an array ";
+		cin>>size;
+		ptr =new int[size];
+		for(int i=0;i<size;i++)
+		{
+			cin>>ptr[i];
+		}
+		cout<<"Before sorting ";
+			for(int i=0;i<size;i++)
+		{
+			cout<<ptr[i]<<" ";
+		}
+			Quicksort(ptr,0,(size-1));
+	}	
+};
+int main()
+{
+	Quick a;
+	a.get();
+	cout<<endl<<"After Sorting  ";
+	a.display();
+}
