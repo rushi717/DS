@@ -1,0 +1,222 @@
+#include<iostream>
+using namespace std;
+
+struct Node{
+	int data;
+	Node * left;
+	Node *right;
+}*Root=NULL,*p;
+
+class Binary_tree{
+	public:
+		int choice,value,size,count=0;
+		void Insert()
+		{
+			cout<<"Inset the size of the tree ";
+			cin>>size;
+			while(count<size){
+			if(Root==NULL)
+			{
+				p=new Node;
+				cout<<"Enter the Root element ";
+				cin>>value;
+				p->data=value;
+				Root=p;
+				cout<<p->data<<" inserted in Root "<<endl;
+				p->left=NULL;
+				p->right=NULL;
+						
+			}
+			else
+			{
+				p=Root;
+				cout<<"Enter the data ";
+				cin>>value;
+				while(true){
+	
+				if(value<p->data)
+				{
+					if(p->left==NULL)	
+					{
+						p->left=new Node;
+						p=p->left;
+						p->data=value;
+						cout<<p->data<<" inserted in Root left "<<endl;
+						p->left=NULL;
+						p->right=NULL;
+						
+						break;
+					}
+					else if(p->left!=NULL)
+					{
+
+						p=p->left;
+					cout<<p->data<<" inserted in left "<<endl;
+					
+					}}
+					else if (value > p->data)
+					{
+						if(p->right==NULL)
+						{
+							p->right=new Node;
+							p=p->right;
+							p->data=value;
+							cout<<p->data<<" inserted in right "<<endl;
+							p->left=NULL;
+							p->right=NULL;
+							break;
+						}
+						else if (p->right != NULL)
+                   		{
+                        
+							p=p->right;
+							cout<<p->data<<" inserted in right "<<endl;
+											}}				
+			}
+			}
+			count++;
+			}
+		}
+
+        struct Node *min(struct Node *k)
+        
+        {
+            struct Node *q=k;
+            while (q && q->left!=NULL)
+            {
+                q=q->left;
+            }
+            return q;            
+        }
+        
+		// Deletion
+		struct Node *Delete(struct Node *Root, int value)
+			{
+				if(Root==NULL)
+				{
+					//
+					
+					cout<<"tree cant't be null "<<"\n";
+					return Root;
+				}
+				else{
+					
+					if(value<Root->data)
+                    {
+                        Root->left=Delete(Root->left,value);
+                    }
+                    else if(value>Root->data)
+					{
+                        Root->right=Delete(Root->right,value);
+                    }
+                    else{
+                        if(Root->right==NULL && Root->left==NULL)
+                        {
+                            delete(Root);
+                            Root=NULL;
+                        }
+                        else if(Root->left==NULL)
+                        {
+                          
+                            cout<<Root->data<<" Deleted Element is "<<endl;
+                            Root=Root->right;
+                           	struct Node* q=Root;
+                            delete(Root);
+                            return q;
+
+                        }
+                        else if(Root->right==NULL)
+                        {
+                        	struct Node* q=Root;
+                            cout<<Root->data<<" Deleted Element is "<<endl;
+                            Root=Root->left;
+                          	
+                            delete(Root);
+                           return q;
+                        }
+                        struct Node* temp = min(Root->right);
+                        Root->data=temp->data;
+                        Root->right=Delete(Root->right,temp->data);
+                    }
+					
+							}				
+
+			}
+		void Pre_order(Node *p)
+		{
+			if(p!=NULL)
+			{
+				cout<<p->data<<"\t";
+				Pre_order(p->left);
+				Pre_order(p->right);
+			}
+//			cout<<"printing traversal in preorder\n";
+//   			 Pre_order(Root);
+		}
+		void In_order(Node *p)
+		{
+			if(p!=NULL)
+			{
+				
+				In_order(p->left);
+				cout<<p->data<<"\t";
+				In_order(p->right);
+			}
+		}
+		void Post_order(Node *p)
+		{
+				if(p!=NULL)
+			{
+				
+				Post_order(p->left);
+				Post_order(p->right);
+				cout<<p->data<<"\t";
+			}
+			
+			}	
+
+		
+		void menu()
+		{
+			do{
+			cout<<endl<<"1.Insert element "<<endl<<"2.Delete element "<<endl<<"3.Pre-order Searching "<<endl<<"4.In-order Searching  "<<endl<<"5.Post-order Searching "<<endl<<"6.BFS searching "<<endl<<"7.Display"<<endl<<"8.Exit"<<endl<<endl;
+			cout<<"Enter the choice ";
+			cin>>choice;
+			switch(choice)
+			{
+				case 1:
+					Insert();
+					break;
+				case 2:
+					cout<<"Enter the node you want to delete ";
+					cin>>value;
+					Delete(Root,value);
+					break;
+				case 3:
+					cout<<"printing traversal in preorder\n";
+	    			Pre_order(Root);
+					break;
+				case 4:
+					In_order(Root);
+					break;
+				case 5:
+					Post_order(Root);
+					break;
+				case 6:
+					//BFS();
+					break;
+				case 7:
+				//	Display();
+					break;
+				case 8:
+					break;	
+			}		}
+			while(choice!=8);
+		}
+		
+};
+int main()
+{
+	Binary_tree b;
+	b.menu();
+}
