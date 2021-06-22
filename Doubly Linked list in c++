@@ -1,0 +1,261 @@
+#include<iostream>
+using namespace std;
+ struct Node{
+ 	int data;
+ 	Node * next;
+ 	Node * prev;
+ }*Head=NULL,*p,*q,*r;
+ 
+ class Doubly_LL{
+	public:
+		int choice,value,data1;
+		void begin_i()
+		{
+			p=new Node;
+			cout<<"Enter the data ";
+			cin>>value;
+			p->data=value;
+			if(Head==NULL)
+			{				
+				p->next=NULL;
+				p->prev=NULL;
+				Head=p;
+			}
+			else{
+				p->next=Head;
+				Head->prev=p;
+				p->prev=NULL;
+				Head=p;
+				
+			}
+		}
+		void end_i()
+		{
+			p=new Node;
+			cout<<"Enter the data ";
+			cin>>value;
+			p->data=value;
+			if(Head==NULL)
+			{
+				p->next=NULL;
+				p->prev=NULL;
+				Head=p;
+			}
+			else{
+				q=Head;
+				while(q->next!=NULL)
+				{
+					q=q->next;
+				}
+				q->next=p;
+				p->prev=q;
+				p->next=NULL;
+			}
+		}
+		void begin_d()
+		{
+			if(Head==NULL)
+			{
+				cout<<"LL is empty"<<endl;
+				
+			}
+			else{
+				q=Head;
+				Head=Head->next;
+				cout<<"|"<<q->data<<"|"<<" Got deleted "<<endl;
+				delete(q);
+			}
+		}
+		void end_d()
+		{
+			if(Head==NULL)
+			{
+				cout<<"LL is empty"<<endl;
+				
+			}
+			else{
+				q=Head;
+				while(q->next!=NULL)
+				{
+					r=q;
+					q=q->next;
+			}
+				r->next=NULL;
+				cout<<"|"<<q->data<<"|"<<" Got deleted "<<endl;
+				delete(q);
+			}
+		}
+		void insert_after()
+		{
+			if(Head==NULL)
+			{
+				cout<<"LL is empty"<<endl;
+				
+			}
+			else{
+				cout<<"Enter the value to insert element after ";
+				cin>>data1;
+				q=Head;
+				while(q->next!=NULL)
+				{
+					if(data1==q->data)
+					{
+						p=new Node;
+						cout<<"Enter the value ";
+						cin>>value;
+						p->data=value;
+						r=q->next;
+						p->next=r;
+						r->prev=p;
+						q->next=p;
+						p->prev=q;
+						
+					}
+				//	r=q;
+					q=q->next;
+				}
+			}
+		}
+		void insert_before()
+		{
+			if(Head==NULL)
+			{
+				cout<<"LL is empty"<<endl;
+				
+			}
+			else{
+				cout<<"Enter the value to insert element after ";
+				cin>>data1;
+				q=Head;
+				q=Head;
+				while(q->next!=NULL)
+				{
+					if(data1==q->data)
+					{
+						p=new Node;
+						cout<<"Enter the value ";
+						cin>>value;
+						p->data=value;
+						r->next=p;
+						p->prev=r;
+						p->next=q;
+						q->prev=p;
+					}
+					r=q;
+					q=q->next;
+				}
+			}
+		}
+		void sort()
+		{
+			if(Head==NULL)
+			{
+				cout<<"LL is empty"<<endl;
+				
+			}
+			else{
+				q=Head;
+				while(q!=NULL)
+				{
+					r=q->next;
+					while(r!=NULL)
+					{
+						if(q->data > r->data)
+						{
+							value=q->data;
+							q->data=r->data;
+							r->data=value;
+						}
+						r=r->next;
+						
+					}
+					q=q->next;
+				}
+			}
+		}
+		void reverse()
+		{
+			if(Head==NULL)
+			{
+				cout<<"LL is empty"<<endl;
+				
+			}
+			else{
+				q=Head;
+
+				do{
+					q->prev=q->next;
+					q->next=NULL;
+					q=q->next;
+				}
+				while(q->next!=NULL);
+			
+		}}
+		void display()
+		{
+			if(Head==NULL)
+			{
+				cout<<"LL is empty"<<endl;
+				
+			}
+			else{
+				q=Head;
+				while(q!=NULL)
+				{
+					cout<<"|"<<q->data<<"|"<<"\t";
+					q=q->next;
+				}
+			}
+		}
+ 		
+ 		
+ 	void menu()
+		{
+			do{
+				
+				cout<<endl<<"1.Begin Insert "<<"\n"<<"2.End Insert "<<"\n"<<"3.Begin Delete "<<"\n"<<"4.End Delete "<<"\n"<<"5.Insert After"<<endl<<"6.Insert Before"<<"\n"<<"7.Sort"<<"\n"<<"8.Reverse"<<"\n"<<"9.Display"<<"\n"<<"10.Exit"<<endl;
+				cout<<"Enter your choice ";
+				cin>>choice;
+				switch(choice)
+				{
+					case 1:
+						begin_i();	
+						break;
+					case 2:
+						end_i();
+						break;
+						
+					case 3:
+						begin_d();
+							break;
+					case 4: 
+						end_d();
+							break;
+					case 5:
+						insert_after();
+						break;
+					case 6:
+						insert_before();
+						break;
+					case 7:	
+						sort();
+						break;
+					case 8:
+						reverse();
+						break;
+					case 9:
+						display();
+					case 10:
+						break;
+						
+				}
+			}
+			while(choice!=10);
+		}
+		
+};
+int main()
+{
+	Doubly_LL l;
+	l.menu();
+}
