@@ -1,0 +1,234 @@
+#include<iostream>
+using namespace std; 
+
+struct Node{
+	int data;
+	Node *next;
+	
+}*Head=NULL,*p,*q,*r;
+
+class Singly_LL
+	{
+	public:
+		int choice,value,data1;
+		
+	void begin_i()
+	{
+		p=new Node;
+		cout<<"Enter the data ";
+		cin>>value;
+		p->data=value;
+		if(Head==NULL)
+		{
+			p->next=p;
+			Head=p;
+		}
+		else{
+			q=Head;
+			while(q->next!=Head)
+			{
+				q=q->next;
+			}
+			p->next=Head;
+			q->next=p;
+			Head=p;
+		}
+	}
+	void end_i()
+	{
+		p=new Node;
+		cout<<"Enter the data ";
+		cin>>value;
+		p->data=value;
+		if(Head==NULL)
+		{
+			p->next=p;
+			Head=p;
+		}
+		else{
+			q=Head;
+			while(q->next!=Head)	{
+				q=q->next;
+			}
+			q->next=p;
+			p->next=Head;
+		}
+	}
+	void begin_d()
+	{
+		if(Head==NULL)
+		{
+			cout<<"LL is empty "<<endl;
+		}
+		else{
+			r=Head;
+			q=Head;	
+			while(q->next!=Head)	{
+				q=q->next;
+			}
+			Head=Head->next;
+			q->next=Head;
+			cout<<"|"<<r->data<<"|"<<" Got deleted "<<endl;
+			delete(r);			
+		}
+	}
+	void end_d()
+	{
+		if(Head==NULL)
+		{
+			cout<<"LL is empty "<<endl;
+		}
+		else{
+			q=Head;
+			while(q->next!=Head)
+			{
+				r=q;
+				q=q->next;
+			}
+			r->next=Head;
+			cout<<"|"<<q->data<<"|"<<" Got deleted "<<endl;
+			delete(q);
+		}
+	}
+	void insert_after()
+	{
+		if(Head==NULL)
+		{
+			cout<<"LL is empty "<<endl;
+		}
+		else{
+			cout<<"Enter the data of ehich you want to insert after ";
+			cin>>data1;
+			q=Head;
+			while(q->next !=Head ){
+			
+				if(q->data == data1)
+				{
+					p=new Node;
+					cout<<"Enter the data ";
+					cin>>value;
+					p->data=value;
+					r=q->next;
+					q->next=p;
+					p->next=r;
+					
+				}
+				q=q->next;
+			}}
+	}
+	void insert_before()
+	{
+		if(Head==NULL)
+		{
+			cout<<"LL is empty "<<endl;
+		}
+		else{
+			cout<<"Enter the data of which you want to insert before ";
+			cin>>data1;
+			q=Head;
+			while(q->next !=Head ){
+			
+				if(q->data == data1)
+				{
+					p=new Node;
+					cout<<"Enter the data ";
+					cin>>value;
+					p->data=value;
+					r->next=p;
+					p->next=q;
+					break;
+				}
+				r=q;
+				q=q->next;
+			}
+		}
+	}
+	void sort()
+	{
+		if(Head==NULL)
+		{
+			cout<<"LL is empty "<<endl;
+		}
+		else{
+			q=Head;
+			do{
+				r=q->next;
+				while(r!=Head)
+				{
+					if ( q->data > r->data)
+					{
+						value=q->data;
+						q->data=r->data;
+						r->data=value;
+					}					
+					r=r->next;
+				}
+				q=q->next;
+			}
+			while(q->next!=Head);		
+		}			
+	}
+	void display()
+	{
+		if(Head==NULL)
+		{
+			cout<<"LL is empty "<<endl;
+		}
+		else{
+			q=Head;
+			do{
+				cout<<"|"<<q->data<<"|"<<"\t";
+				q=q->next;
+			}
+			while(q!=Head);
+		}
+		
+	}
+	void menu()
+		{
+			do{
+				
+				cout<<endl<<"1.Begin Insert "<<"\n"<<"2.End Insert "<<"\n"<<"3.Begin Delete "<<"\n"<<"4.End Delete "<<"\n"<<"5.Insert After"<<"\n"<<"6.Sort"<<"\n"<<"7.Insert Before"<<"\n"<<"8.Display"<<endl<<"9.Exit"<<"\n"<<endl;
+				cout<<"Enter your choice ";
+				cin>>choice;
+				switch(choice)
+				{
+					case 1:
+						begin_i();	
+						break;
+					case 2:
+						end_i();
+						break;
+						
+					case 3:
+						begin_d();
+							break;
+					case 4: 
+						end_d();
+							break;
+					case 5:
+						insert_after();
+						break;
+					case 6:
+						sort();
+						break;
+					case 7:
+						insert_before();
+						break;
+					case 8:	
+						display();
+						break;
+					case 9:						
+						break;
+						
+				}
+			}
+			while(choice!=9);
+		}
+		
+};
+int main()
+{
+	Singly_LL l;
+	l.menu();
+}
