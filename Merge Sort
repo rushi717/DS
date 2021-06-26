@@ -1,0 +1,90 @@
+#include<iostream>
+using namespace std;
+class Merge_Sort
+{
+	public:	
+	int size,*p,median,k,temp[100];
+	
+	void Merge_so(int *p,int left, int right,int median)
+	{
+		//In here we take i==LeftMost element and median+1 as 'J' aand we take temp[] array to store the sorted array;
+		int i=left;
+		int j=median + 1;
+		//k is the pointer for temp[] array, it keeps the track of curent location
+		k=left;
+		
+		// we run while loop till the condition tho get all the elements from sub-arrays
+		while(i<=median && j<=right)
+		{
+			//we check here for the smallest element which is being stored in temp[] in sorted manner
+			if(p[i]<=p[j])
+			{
+				temp[k]=p[i];
+				i++;k++;
+			}
+			else{
+				temp[k]=p[j];
+				j++;k++;
+			}
+		}
+		//It is highy likely to be possible that size of left sub-array and size of right sub-array is dissimilar
+		while(i<=median)
+		{
+			temp[k]=p[i];
+			k++;i++;
+		}
+		//It is highy likely to be possible that size of left sub-array and size of right sub-array is dissimilar so will loop through end if a single element is remain
+		while(j<=right)
+		{
+			temp[k]=p[j];
+			k++;j++;
+		}
+		
+		//we are copying all the elements from temp to 'p'
+		for(int i=left;i<right;i++)
+		{
+			p[i]=temp[i];
+		}
+	}
+	void Merge(int *p,int left,int right)
+	{
+		//We divide the array into 2 sub arrays Recursively
+		// Here we checks whether left array is greater than right array, if yes then it will break, cause we are finding the median
+		if(left<right){
+		//Here we find out the median
+		median=(left+right)/2;
+		//Call the function recursively
+		Merge(p,left,median);
+		Merge(p,median+1,right);
+		//after getting appropriate median we call upper function
+		Merge_so(p,left,right,median);
+		}
+	}
+	void get()
+	{
+		cout<<"Enter the size of array ";
+		cin>>size;
+		p=new int[size];
+		for(int i=0;i<size;i++)
+		{
+			cin>>p[i];
+		}
+		cout<<"Unsorted array ";
+		for(int i=0;i<size;i++)
+		{
+			cout<<p[i]<<"\t";
+		}
+		Merge(p,0,(size-1));
+		
+		cout<<endl<<"sorted array ";
+		for(int i=0;i<size;i++)
+		{
+			cout<<p[i]<<"\t";
+		}
+	}
+};
+int main()
+{
+	Merge_Sort m;
+	m.get();
+}
