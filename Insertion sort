@@ -22,14 +22,22 @@ class insertion
 				cout<<p[i]<<"\t";
 			}
 			for(int i=1;i<size;i++){
+			
+				// 8 | 4 9 8 -3 22 first element is sorted and all are unsorted, It checks for adjacent element
+				//and increment the bar, unlinke selection sort which checks for smaller elements from entire array
+				//so we take i=1 here and j=i-1 which is previous element to i and gives the calue of i to key which will do all the work
+				
 				int key=p[i];
 				int j=i-1;
 				while(p[j]>=key && j>=0)
-				{
-					
+				//if key(which is p[i]=4 in first iteration) elements is smaller than p[j](which is 4 for the first iteration) element.
+				{	
+					//we copy value p[j](which is 0th index and value(8) for the first iteration)to p[j+1](which is 'i'th element (index=1 and value=4)for the first iteration)
+			
 					p[j+1]=p[j];
 					j--;         // To break while loop
 				}
+				//we swap the value to key
 				int temp=p[j+1];
 				p[j+1]=key;
 				key=temp;
