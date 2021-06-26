@@ -1,5 +1,11 @@
 #include<iostream>
 using namespace std;
+
+//It is a type of Divide and conquer technique
+//It finds the pivot and divides the array into 2 sub array where left side is smaller and right size is greater than pivot
+
+//We've taken the last elemetns as the pivot
+
 class Quick{
 	public:
 	int size,*ptr;	
@@ -15,6 +21,7 @@ class Quick{
 				ptr[i]=ptr[index];
 				ptr[index]=temp;
 				index++;
+				
 			}
 		}
 		int temp=ptr[e];
