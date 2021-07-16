@@ -1,0 +1,89 @@
+//In dfs we use stack and in bfs we use queue
+// to create adjacency list we use linked list
+// to create adjacency matrix we use array
+
+#include<iostream>
+using namespace std;
+	 int no_vert;
+class graph_dfs{
+	public:
+		int initial_vertex=0,top=-1,size;
+			int visited[10];
+		void dfs(int graph[][10])
+		{
+				int stack[10];
+			 				 			
+			for(int i=0;i<no_vert;i++)
+			{
+				stack[i]=0;
+				visited[i]=0;
+			}	
+			for(int i=0;i<no_vert;i++)
+			{
+				cout<<"Reachable nodes "<<i<<": ";
+				for(int j=0;j<no_vert;j++){
+				
+				if(graph[i][j] && !visited[j])
+				{
+					top++;
+					stack[top]=j;
+						
+				}
+				if(top!=-1 )
+				{
+					visited[stack[top]]=1;
+					stack[top--];
+				}
+				if(visited[j])
+				{
+					cout<<j<<" ";
+				}
+				
+				}
+				
+				cout<<endl;
+				for(int k=0;k<no_vert;k++)
+				{
+					stack[k]=0;
+					visited[k]=0;
+				}
+								
+				}
+				
+				}
+					
+};
+int main()
+{
+	
+	int input;
+	cout<<"Enter the no. of vertices ";
+	cin>>no_vert;
+	
+	int graph[10][10];
+	for (int i=0;i<no_vert;i++)
+	{
+		for(int j=0;j<no_vert;j++)
+		{
+			cout<<"If "<<i<<" vertx is connected to "<<j<<" vertex press 1 , else 0 ";
+			cin>>input;
+			graph[i][j]=input;
+		}
+	}
+	
+	cout<<endl;
+	for (int i=0;i<no_vert;i++)
+	{
+		
+		cout<<"Vertex "<<i<<": ";
+		for(int j=0;j<no_vert;j++)
+		{
+					cout<<graph[i][j]<<" ";
+	}
+	cout<<endl<<endl;
+	}
+	
+	graph_dfs g;
+	g.dfs(graph);
+
+}
